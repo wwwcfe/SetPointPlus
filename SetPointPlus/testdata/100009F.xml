@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Source>
+	<language xml:lang="en-us"/>
+	
+	<Devices>
+
+		<!-- Device Info # Catanina corded  Mice -->
+		<Device DisplayName="Corded Mouse M500" Class="PointingDevice" Model="16777375" NumberOfButtons="9" AppTier="2" >
+			<PARAM SpeedX="25" SpeedY="25" SwapButtons="1,2" ButtonSwapped="" Trails="0" TrailsLength="0" SmartMove="0" Swapable="1"  />
+      <Macros>
+        <!-- DLLs to load -->
+        <Macro>MacroMedia</Macro>
+      </Macros>
+      <!-- mouse pic -->
+			  <Bitmap>
+				<PAGE>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\1.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\2.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\3.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\4.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\5.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\6.png"/>
+					<Button Bmp="Devices\\PointingDevice\\100009F\\7.png"/>
+				</PAGE>
+			</Bitmap> 
+			<Buttons>
+				<Button Number="1" Name="1">
+          <PARAM AppSpecificSettingHidden="1"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="1" Silent="1"  /> 
+						<TriggerState Name="ButtonDownUp" HandlerSet="LeftClick" />
+					</Trigger>
+				</Button>				
+				<Button Number="2" Name="2">
+          <PARAM AppSpecificSettingHidden="1"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="2" Silent="1" /> 
+						<TriggerState Name="ButtonDownUp" HandlerSet="RightClick" />
+					</Trigger>
+				</Button>				
+				<Button Number="3" Name="3"> 
+					<Trigger Class="ButtonPress">
+						<PARAM Button="3" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="ApplicationSwitch" HandlerSetGroup="MiddleButtonGroup5" />
+          </Trigger>
+						</Button>				
+        <Button Number="5" Name="4">
+          <Trigger Class="ButtonPress">
+            <PARAM Button="5" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="BrowserForward" HandlerSetGroup="ForwardGroup2" >
+              <AppOverride App="OUTLOOK.exe" HandlerSet="AppOverride_OutlookBack"/>
+              <AppOverride App="MSIMN.exe" HandlerSet="AppOverride_OutlookExpressBack"/>
+              <AppOverride App="WINWORD.exe" HandlerSet="AppOverride_WordBack"/>
+              <AppOverride App="POWERPNT.exe" HandlerSet="AppOverride_PowerPointBack"/>
+              <AppOverride App="MM.exe" HandlerSet="AppOverride_MindMapperBack"/>
+              <AppOverride App="EXCEL.exe" HandlerSet="AppOverride_ExcelBack"/>
+              <AppOverride App="NLNOTES.exe" HandlerSet="AppOverride_LotusNotesBack"/>
+            </TriggerState>
+          </Trigger>
+        </Button>        								
+        <Button Number="4" Name="5">
+          <Trigger Class="ButtonPress">
+            <PARAM Button="4" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="Back" HandlerSetGroup="BackGroup2" >
+              <AppOverride App="OUTLOOK.exe" HandlerSet="AppOverride_OutlookForward"/>
+              <AppOverride App="MSIMN.exe" HandlerSet="AppOverride_OutlookExpressForward"/>
+              <AppOverride App="WINWORD.exe" HandlerSet="AppOverride_WordForward"/>
+              <AppOverride App="POWERPNT.exe" HandlerSet="AppOverride_PowerPointForward"/>
+              <AppOverride App="MM.exe" HandlerSet="AppOverride_MindMapperForward"/>
+              <AppOverride App="EXCEL.exe" HandlerSet="AppOverride_ExcelForward"/>
+              <AppOverride App="NLNOTES.exe" HandlerSet="AppOverride_LotusNotesForward"/>
+            </TriggerState>
+          </Trigger>
+        </Button>
+		<Button Number="6" Name="6"> 
+					<Trigger Class="ButtonPress">
+						<PARAM Button="7" Type="Tilt" /> 
+						<TriggerState Name="ButtonDownUp" HandlerSet="HorzScrollLeftSet" HandlerSetGroup="ScrollLeftGroup2"/>
+					</Trigger>
+				</Button>
+				<Button Number="7" Name="7"> 
+					<Trigger Class="ButtonPress">
+						<PARAM Button="8" Type="Tilt" /> 
+						<TriggerState Name="ButtonDownUp" HandlerSet="HorzScrollRightSet" HandlerSetGroup="ScrollRightGroup2"/>						
+					</Trigger>
+				</Button>
+
+        <!-- virtual scroll button -->
+        <Button Number="1234" Name="1234">
+          <PARAM Type="HIDDEN|VSCROLL" />
+          <Trigger Class="ButtonPress">
+            <PARAM Button="1234" Silent="1"  />
+            <TriggerState Name="ButtonDownUp" HandlerSet="AppOverride_AllProgramsVertScroll" >
+              <AppOverride App="WORDPAD.exe" HandlerSet="AppOverride_WordPadVertScroll"/>
+              <AppOverride App="WINWORD.exe" HandlerSet="AppOverride_WordVertScroll"/>
+              <AppOverride App="IEXPLORE.exe" HandlerSet="AppOverride_IExploreVScroll"/>
+              <AppOverride App="OUTLOOK.exe" HandlerSet="AppOverride_OutlookVertScroll"/>
+              <AppOverride App="POWERPNT.exe" HandlerSet="AppOverride_PowerPointVertScroll"/>
+              <AppOverride App="EXCEL.exe" HandlerSet="AppOverride_ExcelVertScroll"/>
+              <AppOverride App="REALPLAY.exe" HandlerSet="AppOverride_RealPlayerVertScroll"/>
+              <AppOverride App="ACRORD32.exe" HandlerSet="AppOverride_AcrobatReaderVertScroll"/>
+              <AppOverride App="ACROBAT.exe" HandlerSet="AppOverride_AcrobatReaderVertScroll"/>
+              <AppOverride App="PHOTOSHOP.exe" HandlerSet="AppOverride_AdobePhotoshopVertScroll"/>
+              <AppOverride App="OIS.exe" HandlerSet="AppOverride_MicrosoftPicManagerVertScroll"/>
+              <AppOverride App="NLNOTES.exe" HandlerSet="AppOverride_LotusNotesVertScroll"/>
+            </TriggerState>
+          </Trigger>
+        </Button>
+
+        <!-- virtual horizontal button -->
+        <Button Number="1346" Name="1346">
+          <PARAM Type="HIDDEN|HSCROLL" />
+          <Trigger Class="ButtonPress">
+            <PARAM Button="1346" Silent="1" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="AppOverride_AllProgramsHorzScroll">
+              <AppOverride App="WORDPAD.exe" HandlerSet="AppOverride_WordPadHorzScroll"/>
+              <AppOverride App="WINWORD.exe" HandlerSet="AppOverride_WordHorzScroll"/>
+              <AppOverride App="IEXPLORE.exe" HandlerSet="AppOverride_IExploreHorzScroll"/>
+              <AppOverride App="OUTLOOK.exe" HandlerSet="AppOverride_OutlookHorzScroll"/>
+              <AppOverride App="POWERPNT.exe" HandlerSet="AppOverride_PowerPointHorzScroll"/>
+              <AppOverride App="EXCEL.exe" HandlerSet="AppOverride_ExcelHorzScroll"/>
+              <AppOverride App="REALPLAY.exe" HandlerSet="AppOverride_RealPlayerHorzScroll"/>
+              <AppOverride App="ACRORD32.exe" HandlerSet="AppOverride_AcrobatReaderHorzScroll"/>
+              <AppOverride App="ACROBAT.exe" HandlerSet="AppOverride_AcrobatReaderHorzScroll"/>
+              <AppOverride App="PHOTOSHOP.exe" HandlerSet="AppOverride_AdobePhotoshopHorzScroll"/>
+              <AppOverride App="OIS.exe" HandlerSet="AppOverride_MicrosoftPicManagerHorzScroll"/>
+              <AppOverride App="NLNOTES.exe" HandlerSet="AppOverride_LotusNotesHorzScroll"/>
+            </TriggerState>
+          </Trigger>
+        </Button>
+
+      </Buttons>
+      <!-- ******************************************************************** -->
+      <!--					Soft Triggers			                          -->
+      <!-- ******************************************************************** -->
+      <SoftTriggers>
+        <Trigger Class="ForegroundWindowNotifications">
+          <TriggerState Name="SoftTrigger"	 HandlerSet="ForegroundWindowNotification"  HandlerSetGroup=""  />
+        </Trigger>
+      </SoftTriggers>
+      <!-- ******************************************************************** -->
+      <!--					End Soft Triggers			                          -->
+      <!-- ******************************************************************** -->
+    </Device>
+  </Devices>
+</Source>

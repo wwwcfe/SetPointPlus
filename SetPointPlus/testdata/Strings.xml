@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<Source>
+	<language xml:lang="ja-jp"/>
+	<ActiveStringSet ID="Main"/>
+	<StringSet ID="Main">
+		<!-- Toby MediaPad Display -->
+		<!-- Set the LCD_COUNTRY_ID according to this table:
+            English							1
+            German							2
+            French							3
+            Italian							4
+            Spanish							5
+            Dutch							6
+            Brazilian/Portuguese			7
+            Swedish							8
+            Danish							9
+            Norwegian						A
+            Finnish							B
+	  Russian							C
+	  Polish							D
+	  Greek							E
+	  Chinese Simplified(CHS)					F
+	  Chinese Traditional(CHT)					G
+	  Japanese(JPN)						H
+	  Korean (KOR)						I
+
+            For example, English is "1" and "German" is "2" and Finnish is "B" - please note that
+            this can be ONE character long only.
+    -->
+		<String ALIAS="LCD_COUNTRY_ID">H</String>
+		<!-- The following aliases should be set according to the Excel spreadsheet
+         "LCD Localization 1.3.xls" by Francois Campart. -->
+		<!-- LCD_MONTHS contains the abbreviated names of each month, separated by \n.
+         For each month, specify the 3 letter abbreviation, e.g. "January" is "Jan".
+         Put a '.' after the month if the country puts periods after the month.
+         For example, in German, there is supposed to be a '.' after the month.
+         The '.' should appear, e.g. "Jan.\nFeb.\nMrz.\n", etc.
+    -->
+		<String ALIAS="LCD_MONTHS">Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec</String>
+		<!-- If a leading 0 should be shown in the date (e.g. "Aug 03"), set to 1.  If not, set to 0. -->
+		<String ALIAS="LCD_LEAD_0_DATE">1</String>
+		<!-- If a leading 0 should be shown in the time (e.g. "09:50"), set to 1.  If not, set to 0. -->
+		<String ALIAS="LCD_LEAD_0_TIME">0</String>
+		<!-- If AM/PM time format, set to 1.  If 24 hour time format, set to 0.-->
+		<String ALIAS="LCD_TIME_FORMAT">1</String>
+		<String ALIAS="LCD_CONNECTING">Connecting</String>
+		<String ALIAS="LCD_NONETWORK">No Network</String>
+		<String ALIAS="LCD_FAILED">Failed</String>
+		<String ALIAS="LCD_CONNECTED">Connected :-)</String>
+		<!-- Smiley ":-)" must be appended -->
+		<String ALIAS="LCD_BATTERYSTATUS"/>
+		<String ALIAS="LCD_MORNING_GREETING">Good morning</String>
+		<String ALIAS="LCD_AFTERNOON_GREETING">Good afternoon</String>
+		<String ALIAS="LCD_EVENING_GREETING">Good evening</String>
+		<!-- If the dots between the time display should blink, set to 1.  If not, set to 0.-->
+		<String ALIAS="LCD_BLINK_DOTS">1</String>
+		<!-- Define the number of space to add before the time display-->
+		<String ALIAS="LCD_START_POS">3</String>
+		<!-- OSD Text -->
+		<String ALIAS="OSD_PLAYPAUSE">再生/一時停止</String>
+		<String ALIAS="OSD_STOP">停止</String>
+		<String ALIAS="OSD_NEXT_TRACK">次</String>
+		<String ALIAS="OSD_PREV_TRACK">前</String>
+		<String ALIAS="OSD_FASTFORWARD">検索中 &gt;&gt;</String>
+		<String ALIAS="OSD_REWIND">&lt;&lt; 検索中</String>
+		<!-- Helpstrings -->
+		<String ALIAS="HELP_FIRSTBUTTONUSAGE">はじめてボタンを使用する</String>
+		<String ALIAS="HELP_MIDDLEBUTTON">中央ボタン</String>
+		<String ALIAS="HELP_RIGHTBUTTON">右ボタンのクリック</String>
+		<String ALIAS="HELP_LEFTBUTTON">左ボタンのクリック</String>
+		<String ALIAS="HELP_PLAYSOUND">サウンドを再生</String>
+		<String ALIAS="HELP_MAXIMIZE">最大化</String>
+		<String ALIAS="HELP_MINIMIZE">最小化</String>
+		<String ALIAS="HELP_QUICKSWITCH">ドキュメント フリップ</String>
+		<String ALIAS="HELP_SEARCH">検索</String>
+		<String ALIAS="HELP_ITOUCH_SEARCH">検索</String>
+		<String ALIAS="HELP_WINDOWS_RUNKEY">Windows の Run キー</String>
+		<String ALIAS="HELP_CLOSEAPP">閉じる</String>
+		<String ALIAS="HELP_CLIP_COPY">コピー</String>
+		<String ALIAS="HELP_CLIP_CUT">切り取り</String>
+		<String ALIAS="HELP_CLIP_PASTE">貼り付け</String>
+		<String ALIAS="HELP_PAGEDOWN">ページ アップ</String>
+		<String ALIAS="HELP_PAGEUP">ページ ダウン</String>
+		<String ALIAS="HELP_UNASSIGNED">割り当てなし</String>
+    <String ALIAS="HELP_UNSUPPORTED">サポートされていないボタン</String>
+    <String ALIAS="HELP_UNKNOWNFEATURE">未知の機能</String>
+    <String ALIAS="HELP_NOTHING">何もしない</String>
+		<String ALIAS="HELP_WEBCAM">ウェブカメラ</String>
+		<String ALIAS="HELP_CUSTOM_MENU">カスタム メニューの表示</String>
+		<String ALIAS="HELP_MYCOMPUTER">マイ コンピュータ</String>
+		<String ALIAS="HELP_MYDOCUMENTS">マイ ドキュメント</String>
+		<String ALIAS="HELP_MYPICTURES">マイ ピクチャ</String>
+		<String ALIAS="HELP_MYMUSIC">マイ ミュージック</String>
+		<String ALIAS="HELP_MYVIDEOS">My Videos</String>
+		<String ALIAS="HELP_OPENFILE">ファイルを開く</String>
+		<String ALIAS="HELP_OPENFOLDER">フォルダを開く</String>
+		<String ALIAS="HELP_LAUNCHPROG">プログラムの起動</String>
+		<String ALIAS="HELP_CALCULATOR">電卓</String>
+		<String ALIAS="HELP_MEDIADESKTOP">Media Desktop</String>
+		<String ALIAS="HELP_CONTROLPANEL">コントロール パネル</String>
+		<String ALIAS="HELP_WEBPAGE">Web ページを開く</String>
+		<String ALIAS="HELP_HOMEPAGE">Home (マイホーム)</String>
+		<String ALIAS="HELP_ITOUCH">iTouch</String>
+		<String ALIAS="HELP_SHOPPING">Shopping (ショッピング)</String>
+		<String ALIAS="HELP_FAVORITES">Favorites (お気に入り)</String>
+		<String ALIAS="HELP_BACK">戻る</String>
+		<String ALIAS="HELP_FORWARD">進む</String>
+		<String ALIAS="HELP_EMAIL">E-Mail (メール)</String>
+		<String ALIAS="HELP_MESSENGER">コミュニティ</String>
+		<String ALIAS="HELP_MEDIAPLAYER">メディア プレーヤー</String>
+		<String ALIAS="HELP_MEDIA_CENTER_PLAYER">メディア センタ</String>
+		<String ALIAS="HELP_REMOTE_MEDIAPLAYER">MediaLife</String>
+		<String ALIAS="HELP_INAV">iNav</String>
+		<String ALIAS="HELP_INAVGO">iNav ジャンプ</String>
+		<String ALIAS="HELP_INAVBACK">iNav 戻る</String>
+		<String ALIAS="HELP_INAVWHEEL">iNav ホイール</String>
+		<String ALIAS="HELP_CRUISEUP">クルーズ アップ</String>
+		<String ALIAS="HELP_CRUISEDOWN">クルーズ ダウン</String>
+		<String ALIAS="HELP_OFFICE_NEW">新規作成</String>
+		<String ALIAS="HELP_OFFICE_REPLY">返信</String>
+		<String ALIAS="HELP_OFFICE_FORWARD">転送</String>
+		<String ALIAS="HELP_OFFICE_SEND">送信</String>
+		<String ALIAS="HELP_OFFICE_UNDO">元に戻す</String>
+		<String ALIAS="HELP_OFFICE_REDO">繰り返し</String>
+		<String ALIAS="HELP_OFFICE_PRINT">印刷</String>
+		<String ALIAS="HELP_OFFICE_SAVE">保存</String>
+		<String ALIAS="HELP_DRAGLOCK">ドラッグ ロック</String>
+		<String ALIAS="HELP_AUTOSCROLL">AutoScroll</String>
+		<String ALIAS="HELP_UNIVERSALSCROLL">Universal Scroll</String>
+		<String ALIAS="HELP_MM_VOLUP">ボリューム アップ</String>
+		<String ALIAS="HELP_MM_VOLDOWN">ボリューム ダウン</String>
+		<String ALIAS="HELP_MM_PLAY">再生</String>
+		<String ALIAS="HELP_MM_STOP">停止</String>
+		<String ALIAS="HELP_MM_NEXT">次へ</String>
+		<String ALIAS="HELP_MM_PREV">前へ</String>
+		<String ALIAS="HELP_MM_FASTFORWARD">検索中 &gt;&gt;</String>
+		<String ALIAS="HELP_MM_REWIND">&lt;&lt; 検索中</String>
+		<String ALIAS="HELP_MM_TUNEUP">チューニング</String>
+		<String ALIAS="HELP_MM_TUNEDOWN">チューニング</String>
+		<String ALIAS="HELP_MM_SHUFFLE">シャッフル</String>
+		<String ALIAS="HELP_MM_MUTE">ミュート</String>
+		<String ALIAS="HELP_ROTATE_RIGHT">右回転</String>
+		<String ALIAS="HELP_ROTATE_LEFT">左回転</String>
+		<String ALIAS="HELP_EJECT">ドライブの取り出し</String>
+		<String ALIAS="HELP_KEYSTROKE">キーストロークの割当</String>
+		<String ALIAS="HELP_PREVIOUS_APP">前のアプリケーション</String>
+		<String ALIAS="HELP_NEXT_APP">次のアプリケーション</String>
+		<String ALIAS="HELP_HELP">ヘルプ</String>
+		<String ALIAS="HELP_SEARCH_FOR_FILES">ファイル/フォルダの検索</String>
+    <String ALIAS="HELP_WINDOWS_LOCKPC">PC をロック</String>
+    <String ALIAS="HELP_WINDOWS_MINIMIZE">すべてのウィンドウを最小化する</String>
+    <String ALIAS="HELP_WINDOWS_RESTORE">すべてのウィンドウを復元</String>
+    <String ALIAS="HELP_DOCUMENTS">ドキュメント</String>
+		<String ALIAS="HELP_SPREADSHEETS">スプレッドシート</String>
+		<String ALIAS="HELP_CALENDAR">カレンダー</String>
+		<String ALIAS="HELP_DOUBLECLICK">ダブルクリック</String>
+		<String ALIAS="HELP_WINSWITCH">アプリ切り替え</String>
+		<String ALIAS="HELP_STARTMENU">［スタート］ メニュー</String>
+		<String ALIAS="HELP_GENERIC_MOUSE_BUTTON">汎用ボタン</String>
+    <String ALIAS="HELP_GENERIC_BUTTON">汎用ボタン</String>
+    <String ALIAS="HELP_OS_DEFAULT_MOUSE_BUTTON">OS デフォルト</String>
+		<String ALIAS="HELP_HORZ_SCROLL_LEFT">左にスクロール</String>
+		<String ALIAS="HELP_HORZ_SCROLL_RIGHT">右にスクロール</String>
+		<String ALIAS="HELP_ZOOM_SET">ズーム</String>
+		<String ALIAS="HELP_TOGGLESTATUS">ステータス</String>
+		<String ALIAS="HELP_BURN">CD 作成</String>
+		<String ALIAS="HELP_RECORD">録音</String>
+		<String ALIAS="HELP_PRESENTATION">プレゼンテーション</String>
+    <String ALIAS="HELP_PANANDZOOM">パンとズーム</String>
+		<!-- Lock notification -->
+		<String ALIAS="HELP_LOCK_CAPS_ON"> Caps Lock オン</String>
+		<String ALIAS="HELP_LOCK_CAPS_OFF"> Caps Lock オフ</String>
+		<String ALIAS="HELP_LOCK_SCROLL_ON">Scroll Lock オン</String>
+		<String ALIAS="HELP_LOCK_SCROLL_OFF">Scroll Lock オフ</String>
+		<String ALIAS="HELP_LOCK_NUMS_ON">Num Lock オン</String>
+		<String ALIAS="HELP_LOCK_NUMS_OFF">Num Lock オフ</String>
+		<!-- Step 3A text for generic handlers -->
+		<String ALIAS="IDS_SELECT_FILE">ファイルの選択</String>
+		<String ALIAS="IDS_SELECT_PROGRAM">プログラムの選択</String>
+		<String ALIAS="IDS_SELECT_FOLDER">フォルダの選択</String>
+		<!-- Playlist handlers (PresetBtns) -->
+		<String ALIAS="HELP_PLAYLIST">お気に入り</String>
+		<!-- Zoom Button handlers (ZoomBtns) -->
+		<String ALIAS="HELP_ZOOMBTN_IN"> 拡大</String>
+		<String ALIAS="HELP_ZOOMBTN_OUT"> 縮小</String>
+		<String ALIAS="HELP_ZOOMBTN_RESET"> ズーム リセット</String>
+		<!-- Script handler -->
+		<String ALIAS="HELP_RUNSCRIPT"> スクリプトを実行</String>
+		<!-- iNav Scroll -->
+		<String ALIAS="HELP_SCROLL"> スクロール</String>
+		<!-- Error Message Text -->
+		<String ALIAS="IDS_SETPOINT_CAPTION">Logicool SetPoint</String>
+		<String ALIAS="SETPOINT_MISSING_FILES_ERROR">SetPoint でエラーが発生したため、動作を継続できません。
+この問題を解決するために、SetPoint を再インストールしてください。</String>
+		<String ALIAS="HELP_ONETOUCHSYNC">Easy Synchronization</String>
+		<!-- copying Calc result onto clipboard preference dialog -->
+		<String ALIAS="HELP_CLIPBOARD_PREFERENCE">クリップボードの設定</String>
+		<String ALIAS="HELP_SENSITIVITY_INCREASE">感度を上げる</String>
+		<String ALIAS="HELP_SENSITIVITY_DECREASE">感度を下げる</String>
+		<String ALIAS="HELP_NAVIGATION_WHEEL">ナビゲーション ホイール</String>
+		<String ALIAS="HELP_SMART_KEY">お気に入り</String>
+		<!-- AppOverrides for Back and Forward Mouse Button -->
+		<String ALIAS="HELP_OUTLOOK_BACK">戻る（Outlook）</String>
+		<String ALIAS="HELP_OUTLOOK_FORWARD">転送（Outlook）</String>
+		<String ALIAS="HELP_OUTLOOK_EXPRESS_BACK">戻る（Outlook Express）</String>
+		<String ALIAS="HELP_OUTLOOK_EXPRESS_FORWARD">転送（Outlook Express）</String>
+		<String ALIAS="HELP_WORD_BACK">戻る（Word）</String>
+		<String ALIAS="HELP_WORD_FORWARD">進む（Word）</String>
+		<String ALIAS="HELP_POWERPOINT_BACK">戻る（PowerPoint）</String>
+		<String ALIAS="HELP_POWERPOINT_FORWARD">進む（PowerPoint）</String>
+		<String ALIAS="HELP_MINDMAPPER_BACK">戻る（MindMapper）</String>
+		<String ALIAS="HELP_MINDMAPPER_FORWARD">進む（MindMapper）</String>
+		<String ALIAS="HELP_EXCEL_BACK">戻る（Excel）</String>
+		<String ALIAS="HELP_EXCEL_FORWARD">進む（Excel）</String>
+		<String ALIAS="HELP_LOTUS_NOTES_BACK">戻る（Notes）</String>
+		<String ALIAS="HELP_LOTUS_NOTES_FORWARD">進む（Notes）</String>
+		<String ALIAS="HELP_EMAIL_ITEM">メールの起動</String>
+		<String ALIAS="HELP_IM_ITEM">メッセンジャーの起動</String>
+		<String ALIAS="HELP_EMAIL_NOTIFICATION">メールの着信通知</String>
+		<String ALIAS="HELP_IM_NOTIFICATION">メッセンジャーの着信通知</String>
+		<String ALIAS="HELP_EASYSYNC">同期</String>
+		<String ALIAS="HELP_BROWSER_STOP">インターネット中止</String>
+		<String ALIAS="HELP_BROWSER_REFRESH">インターネット更新</String>
+		<String ALIAS="HELP_SMART_SEARCH">One-Touch Search</String>
+		<String ALIAS="HELP_INTERNET_SEARCH">One-Touch インターネット検索</String>
+		<String ALIAS="HELP_DESKTOP_SEARCH">One-Touch デスクトップ検索</String>
+		<String ALIAS="HELP_VOIP_SET">VoIP</String>
+		<String ALIAS="HELP_VOIP_BASIC_SET">VoIP</String>
+		<String ALIAS="HELP_VOIP_ADVANCED_SET">VoIP</String>
+		<String ALIAS="HELP_VOIP_CALL_SET">通話</String>
+		<String ALIAS="HELP_VOIP_HANGUP_SET">切断</String>
+		<String ALIAS="HELP_STANDBY">スリープ</String>
+		<String ALIAS="HELP_PICTURE_APP">画像アプリケーション</String>
+		<String ALIAS="HELP_PICTURE_SEARCH">ピクチャ</String>
+		<String ALIAS="HELP_NEW_FOLDER">新規フォルダ</String>
+		<String ALIAS="HELP_KEYBOARD_BEEP">LCD アラーム</String>
+		<String ALIAS="HELP_SCREEN_SAVER">スクリーン セーバの起動</String>
+		<String ALIAS="HELP_SENSITIVITY_TOGGLE">感度の切り替え</String>
+		<String ALIAS="HELP_WINDOWS_DESKTOP">デスクトップの表示</String>
+		<String ALIAS="HELP_LAUNCH_PRESET_1">お気に入り a の起動</String>
+		<String ALIAS="HELP_LAUNCH_PRESET_2">お気に入り b の起動</String>
+		<String ALIAS="HELP_LAUNCH_PRESET_3">お気に入り c の起動</String>
+		<String ALIAS="HELP_LAUNCH_PRESET_4">お気に入り d の起動</String>
+		<String ALIAS="HELP_DESKTOP_SEARCH_APP">コンピュータの検索</String>
+		<String ALIAS="HELP_STANDBY">スリープ</String>
+		<String ALIAS="HELP_RESTART">再起動</String>
+		<String ALIAS="HELP_SHUTDOWN">電源を切る</String>
+		<String ALIAS="HELP_LOGOFF">ログオフ</String>
+		<String ALIAS="HELP_VOIP_PRESET">通信のプリセット</String>
+		<String ALIAS="HELP_VOIP_DIAL_NUMBER">ダイヤル番号</String>
+		<String ALIAS="HELP_VOIP_CHAT">チャット</String>
+		<String ALIAS="HELP_STROMBOLI_MENU">MenuCast</String>
+		<String ALIAS="HELP_STROMBOLI_MAGNIFY">拡大</String>
+		<String ALIAS="HELP_CURSOR_FREEZE">エア カーソルの固定</String>
+		<String ALIAS="HELP_LAUNCH_MEDIA_CENTER">Windows Media Center</String>
+		<String ALIAS="HELP_FIVE_BUTTON_VOLUME">ボリューム</String>
+		<String ALIAS="HELP_FIVE_BUTTON_MEDIA">メディア</String>
+		<String ALIAS="HELP_FIVE_BUTTON_MEDIA">メディア</String>
+		<String ALIAS="HELP_STROMBOLI_VOL">ミュート（エア ボリューム）</String>
+		<String ALIAS="HELP_STROMBOLI_MEDIACONTROL">再生/一時中止（エア次/前）</String>
+		<String ALIAS="HELP_STROMBOLI_ZOOM">エア ズーム</String>
+		<String ALIAS="HELP_ARROW_UP">上へ</String>
+		<String ALIAS="HELP_ARROW_DOWN">下へ</String>
+		<String ALIAS="HELP_MANUAL_SHIFT">スクロール モードのシフト</String>
+		<String ALIAS="HELP_FREEZE_BACK">後（エア カーソルの固定）</String>
+		<String ALIAS="IDS_TASK_DESCRIPTION">タスクの説明</String>
+		<String ALIAS="HELP_FIVE_BUTTON_AUTOSCROLL">オートスクロールの</String>
+		<String ALIAS="HELP_FIVE_BUTTON_UNIVERSALSCROLL">ユニバーサル スクロールの</String>
+		<String ALIAS="HELP_FIVE_BUTTON_THUMBSCROLL">サム スクロール</String>
+		<String ALIAS="HELP_FIVE_BUTTON_SEARCH">検索</String>
+		<String ALIAS="HELP_FIVE_BUTTON_KEYSTROKE">複数のキーストローク</String>
+		<String ALIAS="HELP_GADGETS">ガジェット</String>
+		<String ALIAS="HELP_GESTURE_RECENTER">中央配置</String>
+		<String ALIAS="HELP_BATTERY_STATUS">電池状態</String>
+    <String ALIAS="HELP_APPLICATION_SWITCH">アプリケーション スイッチャ</String>
+    <String ALIAS="HELP_DPISETTINGS_SET">マウスの感度</String>
+    <String ALIAS="HELP_TWOSWITCH_DPISETTINGS_SET">マウスの感度</String>
+    <String ALIAS="HELP_TWOSWITCH_CRUISE_SET">クルーズ アップ/ダウン</String>
+    <String ALIAS="HELP_TWOSWITCH_PAGE_SET">ページ ダウン/ページ アップ</String>
+    <String ALIAS="HELP_TWOSWITCH_BACK_FORWARD_SET">進む/戻る</String>
+    <String ALIAS="HELP_TWOSWITCH_NEXT_PREVIOUS_SET">次/前</String>
+    <String ALIAS="HELP_TWOSWITCH_KEYSTROKE_SET">キーストロークの割当</String>
+    <String ALIAS="HELP_TWOSWITCH_COPY_PASTE_SET">コピー/貼り付け</String>
+    <String ALIAS="HELP_DPI_SWITCH">マウスの感度</String>
+	</StringSet>
+</Source>

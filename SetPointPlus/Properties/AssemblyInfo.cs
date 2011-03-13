@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SetPointPlus")]
-[assembly: AssemblyCopyright("Copyright ©  2009")]
+[assembly: AssemblyCopyright("Copyright (c) 2011 wwwcfe")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("6fc909ba-6870-48d5-9c88-f2c1b727db41")]
+[assembly: Guid("f236560b-5900-42bc-892c-cd4e87f4e6ec")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
