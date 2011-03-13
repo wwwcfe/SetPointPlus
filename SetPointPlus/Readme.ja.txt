@@ -1,5 +1,5 @@
-﻿SetPointPlus 1.0.0.0
-公開日 2011/01/10
+﻿SetPointPlus 1.0.0.1
+公開日 2011/01/15
 Web : http://d.hatena.ne.jp/wwwcfe/20090901/SetPointPlus
 Mail: wwwcfe@live.com
 ライセンス: The MIT License
@@ -72,6 +72,14 @@ Mail: wwwcfe@live.com
     user.xml を手動で書き換えることで設定できますが、理解できる方のみご利用ください。
 
 * 更新履歴
+  2011/01/15 Version 1.0.0.1
+  ・SetPoint の再起動時に SetPointPlus 自身も終了させてしまっていた問題を修正
+    (この問題のため、SetPoint を再起動できなくなっていた)
+  ・利便性のため v4.bat (SetPoint 4.x 向け)、v6.bat (SetPoint 6.x 向け) を追加
+    SetPointPlus を適用するときはどちらかを管理者権限で実行してください。
+    エクスプローラーの右クリックから「管理者権限として実行」が便利です。
+  ・DoubleKeystroke と TripleKeystroke の初期設定で 0 が表示されていたのを
+    表示されないように修正
   2011/01/10 Version 1.0.0.0
   ・このバージョンから MIT License を適用します。
   ・GUI を削除し、コンソールアプリケーションになりました。

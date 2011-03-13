@@ -1,4 +1,4 @@
-SetPointPlus 1.0.0.0 (01/10/2011)
+SetPointPlus 1.0.0.1 (01/15/2011)
 Web : http://d.hatena.ne.jp/wwwcfe/20090901/SetPointPlus
 Mail: wwwcfe@live.com
 License: The MIT License (see License.txt)

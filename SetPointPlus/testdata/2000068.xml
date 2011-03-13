@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Source>
+	<language xml:lang="en-us"/>
+	 <Devices>
+		<!-- ********************************       Keyboard Section *********************  -->
+		<!-- Device Info #  -->
+		<Device DisplayName="Compact Keyboard K300" Class="KeyboardDevice" NumberOfButtons="32" Model="33554536" >
+			<PARAM   ScrollLockInActiveKeyExists="0"/>
+        <Macros>
+          <!-- DLLs to load -->
+				<Macro>MacroEmail</Macro>
+				<Macro>MacroMedia</Macro>
+			</Macros>				
+			<!--   keyboard  Bitmap -->
+			<Bitmap>
+				<PAGE>
+					<!--   Hot keys keyboard   Bitmap -->
+				</PAGE>
+				<PAGE>
+					<!--   FKEY keyboard   Bitmap -->
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F1.png"/>
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F2.png"/>
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F3.png"/>
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F4.png"/>
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F5.png"/>
+					<Button Bmp="Devices\\Keyboard\\2000068\\Spello_F12.png"/>
+				</PAGE>	
+			</Bitmap>
+			<Buttons>
+				<!-- Button Name => FLOCK F1 -->
+				<Button Number="786979" Name="F1">
+					<PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\Home"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786979" LongPressTime="3000" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="HomePage" HandlerSetGroup="F5MyHomeKeysGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F2 -->
+				<Button Number="786826" Name="F2">
+					<PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\Email"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786826" LongPressTime="3000" />
+						<TriggerState Name="ButtonDownUp" HandlerSet="Email" HandlerSetGroup="F7EmailKeysGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F3 -->
+				<Button Number="786977" Name="F3">
+					<PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\OneTouchSearch"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786977" LongPressTime="3000" />
+						<TriggerState Name="ButtonDownUp" HandlerSet="AdvSmartSearch" HandlerSetGroup="F8SmartSearchKeysGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F4 -->
+				<Button Number="786834" Name="F4">
+					<PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\Calc"/>
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786834" LongPressTime="3000" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="Calculator"  HandlerSetGroup="FKeysCalcGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+        </Button>
+        <!-- Button Name => FLOCK F5 -->
+        <Button Number="786819" Name="F5">
+          <PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\Media"/>
+          <Trigger Class="ButtonPress">
+            <PARAM Button="786819" LongPressTime="3000" />
+						<TriggerState Name="ButtonDownUp"	HandlerSet="MediaPlayer"  HandlerSetGroup="F9MediaPlayerGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F6 -->
+				<Button Number="786614" Name="F6">
+					<Trigger Class="ButtonPress">
+            <PARAM Button="786614"  LongPressTime="600" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="MM PREVIOUS"  HandlerSetGroup="Keyboard"  />
+            <TriggerState Name="ButtonLongPress" HandlerSet="MM REWIND" />
+					</Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F7 -->
+				<Button Number="786637" Name="F7">
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786637" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="MM PLAY"  HandlerSetGroup="Keyboard"  />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F8 -->
+				<Button Number="786613" Name="F8">
+          <Trigger Class="ButtonPress">
+            <PARAM Button="786613" LongPressTime="600" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="MM NEXT"  HandlerSetGroup="Keyboard"  />
+            <TriggerState Name="ButtonLongPress" HandlerSet="MM FASTFORWARD" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F9 -->
+				<Button Number="786658" Name="F9">
+					<Trigger Class="ButtonPress">
+						<PARAM Button="786658" />
+            <TriggerState Name="ButtonDownUp"	HandlerSet="VOLUMEMUTE" HandlerSetGroup="VolumeMuteGroup"/>
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F10 -->
+				<Button Number="786666" Name="F10">
+					<Trigger Class="ButtonPress">
+            <PARAM Button="786666"  RepeatDelay="50" FirstRepeatDelay="600"    />
+            <TriggerState Name="ButtonDownUp" HandlerSet="VOLUMEDOWN" HandlerSetGroup="VolumeDownGroup" />
+          </Trigger>
+				</Button>
+
+				<!-- Button Name => FLOCK F11 -->
+				<Button Number="786665" Name="F11">
+          <Trigger Class="ButtonPress">
+            <PARAM Button="786665"  RepeatDelay="50" FirstRepeatDelay="600"    />
+            <TriggerState Name="ButtonDownUp" HandlerSet="VOLUMEUP" HandlerSetGroup="VolumeUpGroup" />
+          </Trigger>
+        </Button>
+
+        <!-- Button Name => F12  Eject-->
+        <Button Number="65666" Name="F12">
+          <PARAM Type="FKey" IconLoc="Devices\\Keyboard\\CommonIcons\\sleep" />
+          <Trigger Class="ButtonPress">
+            <PARAM Button="65666" LongPressTime="600" />
+            <TriggerState Name="ButtonDownUp" HandlerSet="StandBySet" HandlerSetGroup="StandByGroup"  />
+            <TriggerState Name="ButtonLongPress"    HandlerSet="ReassignsetSelectTaskFocus" />
+          </Trigger>
+				</Button>
+				
+				<!-- Button Name => Context Menu CONTROLLER  -->
+				<Button  Number="458853" Name="Context menu Controller">
+					<Trigger  Class="ButtonPress" >
+						<PARAM  Button="458853"  />
+						<TriggerState Name="ButtonDownUp" HandlerSet="RightClick" />
+					</Trigger>
+				</Button>
+        <!--! scroll lock -->
+        <Button Number="458823" Name="458823">
+          <Trigger Class="ButtonPress">
+            <PARAM Button="458823"  />
+            <TriggerState Name="ButtonDownUp" HandlerSet="KeystrokeAssignment" >
+              <Handler Class="KeystrokeAssignment">
+                <Param DisplayName="Scroll Lock" LParam="4587521" Modifier="0" VirtualKey="145"/>
+              </Handler>
+            </TriggerState>
+          </Trigger>
+        </Button>
+			</Buttons>
+			<!-- ******************************************************************** -->	
+			<!--					Soft Triggers			                          -->	
+			<!-- ******************************************************************** -->	
+			<SoftTriggers>
+				<Trigger Class="LockKeyNotifications">
+					<PARAM  Caps="1" Num="1" Scroll="1" />
+					<TriggerState Name="SoftTrigger"	 HandlerSet="LockNotification"  HandlerSetGroup=""  />
+				</Trigger>
+			</SoftTriggers>
+			<!-- ******************************************************************** -->	
+			<!--					End Soft Triggers			                          -->	
+			<!-- ******************************************************************** -->	
+		</Device>
+	</Devices>
+</Source>

@@ -7,7 +7,7 @@ using System.IO;
 /*
 The MIT License
 
-Copyright (c) 2010 wwwcfe
+Copyright (c) 2010-2011 wwwcfe
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -152,9 +152,10 @@ namespace SetPointPlus
 			foreach (var p in Process.GetProcesses())
 			{
 				// kill setpoint.exe and setpoint32.exe
-				if (p.ProcessName.StartsWith("SetPoint", StringComparison.OrdinalIgnoreCase))
+				if (p.ProcessName.Equals("setpoint", StringComparison.OrdinalIgnoreCase) ||
+					p.ProcessName.Equals("setpoint32", StringComparison.OrdinalIgnoreCase))
 				{
-					if (p.MainModule.FileName.EndsWith("SetPoint.exe", StringComparison.OrdinalIgnoreCase))
+					if (p.MainModule.FileName.EndsWith("setpoint.exe", StringComparison.OrdinalIgnoreCase))
 						filename = p.MainModule.FileName;
 					p.Kill();
 				}
@@ -400,6 +401,13 @@ namespace SetPointPlus
 			var groups = doc.SelectSingleNode("//HandlerSetGroups");
 			groups.PrependChild(spp);
 
+			// add SetPointPlus to all "HandlerSetGroup" (for all devices)
+			//foreach (var node in groups.SelectNodes("HandlerSetGroup[not(@Name = 'SetPointPlus')]"))
+			//{
+			//    var el = (XmlElement)node;
+			//    el.SetAttribute("HandlerSetNames", el.GetAttribute("HandlerSetNames") + ",SetPointPlus");
+			//}
+
 			doc.Save(filename);
 		}
 
@@ -414,7 +422,7 @@ namespace SetPointPlus
 			param.SetAttribute("VirtualKey", "0");
 			param.SetAttribute("LParam", "0");
 			param.SetAttribute("Modifier", "0");
-			param.SetAttribute("DisplayName", "0");
+			param.SetAttribute("DisplayName", "");
 			handler.AppendChild(param);
 			for (int i = 0; i < count; i++)
 			{
