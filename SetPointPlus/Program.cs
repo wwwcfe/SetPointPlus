@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using System.IO;
 /*
-The MIT License
+SetPointPlus: Released under the MIT License
 
 Copyright (c) 2010-2011 wwwcfe
 
@@ -26,31 +26,27 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
- */
-
+*/
 
 /*
 This program modify SetPoint configration files.
 You can select all commands hidden by default.
-
 Binary Download
 URL: http://d.hatena.ne.jp/wwwcfe/20090901/SetPointPlus
-
- */
+*/
 namespace SetPointPlus
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
+			PrintNotes();
 			if (args.Length == 0)
 			{
-				PrintNotes();
 				PrintUsage();
 				return;
 			}
 
-			PrintNotes();
 			int ver = 0;
 			bool restore = false;
 			bool list = false;
