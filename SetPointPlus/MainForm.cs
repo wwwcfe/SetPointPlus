@@ -49,6 +49,7 @@ namespace SetPointPlus
 			if (!Confirm(Properties.Resources.BeforeApply)) return;
 
 			SetPointExtender.ApplyToDefaultXml();
+            SetPointExtender.ApplyToHelpString();
 
 			foreach (var checkedDevice in deviceCheckedListBox.CheckedItems)
 			{
@@ -83,6 +84,7 @@ namespace SetPointPlus
 			if (!Confirm(Properties.Resources.BeforeRestore)) return;
 
 			SetPointExtender.RestoreDefaultXml();
+            SetPointExtender.RestoreHelpString();
 			SetPointExtender.RestoreDeviceXml();
 			// ユーザー設定ファイルを復元 (.bak ファイルを消す)
 			SetPointExtender.RestoreUserSettingFile();

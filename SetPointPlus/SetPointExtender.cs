@@ -122,11 +122,12 @@ namespace SetPointPlus
 			XDocument document = XDocument.Load(defaultXml);
 
 			// 検証して HelpString が無い場合、また、重複していると思われるハンドラセットを除外
-			var handlerSets =
-				from h in document.Root.Element("HandlerSets").Elements()
-				where IsValidHandlerSet(h)
-				group h by h.Attribute("HelpString").Value into helpStringGroup
-				select helpStringGroup.First().Attribute("Name").Value;
+		    var handlerSets =
+		        from h in document.Root.Element("HandlerSets").Elements()
+		        where IsValidHandlerSet(h)
+                group h by h.Attribute("HelpString").Value into helpStringGroup
+                select helpStringGroup.First().Attribute("Name").Value;
+                //select h.Attribute("Name").Value;
 
 			#region Linq を使わない方法(XmlDocument を使う)はこんな感じになると思う
 			//List<string> nameCache = new List<string>();
@@ -228,6 +229,46 @@ namespace SetPointPlus
 			document.Save(info.FilePath);
 		}
 
+        /// <summary>
+        /// Strings.xml に SetPointPlus の設定を書き込みます。
+        /// 設定のテキストが重複した場合、重複したテキストに番号を割り当てます。
+        /// </summary>
+        public static void ApplyToHelpString()
+        {
+            var stringsXml = Path.Combine(SetPointDirectory, "Strings.xml");
+
+            // 先に復元してもいいけど、バージョンアップで上書きされた場合、
+            // 古い Strings.xml を復元してしまう可能性があるのでやめる。
+            //RestoreHelpString();
+
+            BackupFile(stringsXml);
+
+            XDocument document = XDocument.Load(stringsXml);
+            var elements = from e in document.Root.Element("StringSet").Elements("String")
+                           where e.Attribute("ALIAS").Value.StartsWith("HELP_")
+                           select e;
+
+            // 設定のテキスト, 番号
+            var dict = new Dictionary<string, int>();
+            foreach (var element in elements)
+            {
+                if (dict.ContainsKey(element.Value))
+                {
+                    // かぶった場合
+                    dict[element.Value] = dict[element.Value] + 1;
+                    element.Value = element.Value + string.Format(" ({0})", dict[element.Value]);
+                }
+                else
+                {
+                    // 重複しなかった
+                    // Key は 要素 (String 要素の値)
+                    dict.Add(element.Value, 1);
+                }
+            }
+
+            document.Save(stringsXml);
+        }
+
 		private static void RestoreBackupFile(string backupFileName)
 		{
 			// original.xml.bak に決めうち
@@ -270,5 +311,13 @@ namespace SetPointPlus
 
 			RestoreBackupFile(backupFile);
 		}
+
+        public static void RestoreHelpString()
+        {
+            if (SetPointDirectory == null) return;
+
+            string backupFile = Path.Combine(SetPointDirectory, "Strings.xml.bak");
+            RestoreBackupFile(backupFile);
+        }
 	}
 }
