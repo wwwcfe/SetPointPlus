@@ -117,197 +117,119 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="applyButton.Text" xml:space="preserve">
-    <value>適用(&amp;A)</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>323, 336</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="applyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="insLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="optionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 64</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MainForm</value>
+  <data name="comboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 20</value>
   </data>
   <data name="restartCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 16</value>
+  </data>
+  <data name="&gt;&gt;deviceCheckedListBox.Name" xml:space="preserve">
+    <value>deviceCheckedListBox</value>
+  </data>
+  <data name="targetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 12</value>
+  </data>
+  <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>228, 355</value>
+  </data>
+  <data name="&gt;&gt;comboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optionGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="restoreButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;deviceCheckedListBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Name" xml:space="preserve">
-    <value>applyButton</value>
-  </data>
-  <data name="applyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="optionGroupBox.Text" xml:space="preserve">
-    <value>オプション</value>
-  </data>
-  <data name="&gt;&gt;deviceCheckedListBox.Name" xml:space="preserve">
-    <value>deviceCheckedListBox</value>
-  </data>
-  <data name="label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 9</value>
-  </data>
-  <data name="&gt;&gt;restartCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optionGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;deleteCheckBox.Parent" xml:space="preserve">
-    <value>optionGroupBox</value>
-  </data>
-  <data name="restoreButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 272</value>
-  </data>
-  <data name="&gt;&gt;optionGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;restoreButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;optionGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;restoreButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="restartCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>SetPointPlus</value>
-  </data>
-  <data name="&gt;&gt;restoreButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;restartCheckBox.Parent" xml:space="preserve">
-    <value>optionGroupBox</value>
-  </data>
   <data name="deviceCheckedListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 172</value>
+    <value>289, 200</value>
   </data>
-  <data name="label.Text" xml:space="preserve">
-    <value>インストール済みデバイス(&amp;I):</value>
-  </data>
-  <data name="deleteCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 18</value>
-  </data>
-  <data name="restoreButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;restartCheckBox.Name" xml:space="preserve">
-    <value>restartCheckBox</value>
-  </data>
-  <data name="deviceCheckedListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;insLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;deleteCheckBox.Name" xml:space="preserve">
-    <value>deleteCheckBox</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="deleteCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 16</value>
-  </data>
-  <data name="restartCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
   </data>
   <data name="restartCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 40</value>
   </data>
-  <data name="label.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;targetLabel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="applyButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="optionGroupBox.Text" xml:space="preserve">
+    <value>オプション</value>
   </data>
-  <data name="restartCheckBox.Text" xml:space="preserve">
-    <value>SetPoint を再起動(&amp;R)</value>
-  </data>
-  <data name="&gt;&gt;deviceCheckedListBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;deleteCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="restoreButton.Text" xml:space="preserve">
-    <value>復元(&amp;T)</value>
-  </data>
-  <data name="label.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 12</value>
-  </data>
-  <data name="&gt;&gt;applyButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>315, 302</value>
-  </data>
-  <data name="&gt;&gt;applyButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>323, 336</value>
+  <data name="&gt;&gt;restoreButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="deviceCheckedListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="restoreButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="&gt;&gt;targetLabel.Name" xml:space="preserve">
+    <value>targetLabel</value>
   </data>
-  <data name="optionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 202</value>
+  <data name="restartCheckBox.Text" xml:space="preserve">
+    <value>SetPoint を再起動(&amp;R)</value>
   </data>
-  <data name="&gt;&gt;restoreButton.Name" xml:space="preserve">
-    <value>restoreButton</value>
+  <data name="&gt;&gt;applyButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label.Name" xml:space="preserve">
-    <value>label</value>
-  </data>
-  <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="applyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 272</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
   </data>
   <data name="&gt;&gt;deviceCheckedListBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="deviceCheckedListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 24</value>
+  <data name="applyButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;optionGroupBox.Name" xml:space="preserve">
+  <data name="&gt;&gt;restartCheckBox.Parent" xml:space="preserve">
     <value>optionGroupBox</value>
+  </data>
+  <data name="deviceCheckedListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="restoreButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 355</value>
+  </data>
+  <data name="deleteCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="targetLabel.Text" xml:space="preserve">
+    <value>対象バージョン(&amp;V):</value>
+  </data>
+  <data name="&gt;&gt;comboBox.Name" xml:space="preserve">
+    <value>comboBox</value>
+  </data>
+  <data name="insLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;applyButton.Name" xml:space="preserve">
+    <value>applyButton</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>315, 385</value>
+  </data>
+  <data name="&gt;&gt;deviceCheckedListBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="deleteCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="restoreButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="restoreButton.Text" xml:space="preserve">
+    <value>復元(&amp;T)</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -734,20 +656,146 @@
         rEEAAKxBAACsQQAArEE=
 </value>
   </data>
-  <data name="&gt;&gt;deleteCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;deleteCheckBox.Parent" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;targetLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 285</value>
+  </data>
+  <data name="&gt;&gt;restartCheckBox.Name" xml:space="preserve">
+    <value>restartCheckBox</value>
+  </data>
+  <data name="restartCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="deleteCheckBox.Text" xml:space="preserve">
     <value>ユーザー設定ファイルを削除(&amp;D)</value>
   </data>
-  <data name="&gt;&gt;label.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;deleteCheckBox.Name" xml:space="preserve">
+    <value>deleteCheckBox</value>
   </data>
-  <data name="deleteCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="applyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;insLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;restartCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="targetLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="restoreButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;optionGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="deleteCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="&gt;&gt;insLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 64</value>
+  </data>
+  <data name="&gt;&gt;deleteCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="applyButton.Text" xml:space="preserve">
+    <value>適用(&amp;A)</value>
+  </data>
+  <data name="&gt;&gt;deviceCheckedListBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="targetLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;applyButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;targetLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="restartCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="restoreButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;insLabel.Name" xml:space="preserve">
+    <value>insLabel</value>
+  </data>
+  <data name="insLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 64</value>
+  </data>
+  <data name="insLabel.Text" xml:space="preserve">
+    <value>インストール済みデバイス(&amp;I):</value>
+  </data>
+  <data name="&gt;&gt;applyButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>SetPointPlus</value>
+  </data>
+  <data name="&gt;&gt;restoreButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;restoreButton.Name" xml:space="preserve">
+    <value>restoreButton</value>
+  </data>
+  <data name="&gt;&gt;comboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="targetLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="deviceCheckedListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 79</value>
+  </data>
+  <data name="applyButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;restartCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="deleteCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 16</value>
+  </data>
+  <data name="insLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 12</value>
+  </data>
+  <data name="&gt;&gt;optionGroupBox.Name" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;restoreButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 27</value>
+  </data>
+  <data name="&gt;&gt;optionGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;deleteCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

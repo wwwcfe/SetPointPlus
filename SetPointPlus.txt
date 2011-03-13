@@ -1,10 +1,13 @@
-﻿SetPointPlus 0.1.0.5 beta
-公開日 2009/11/24
+﻿SetPointPlus 0.1.0.6
+公開日 2010/05/10
 
 (*)注意
    このソフトウェアを使用はすべて自己責任でお願いします。
-   作者はこの言語ファイルの使用により生じた損害に対する責任を負いません。
+   作者はこのソフトウェアの使用により生じた損害に対する責任を負いません。
    動作には .NET Framework 3.5 以上が必要です。
+   現在、SetPoint 5.x 系には対応していません。
+   SetPoint 4.x 系と SetPoint 6.x 系に対応しています。ただし、ゲーミングマウス
+   には恐らく対応していません。
 
 (*)概要
    標準の SetPoint で設定できない項目をマウスやキーボードに設定できるように
@@ -12,7 +15,8 @@
 
 (*)使い方
    実行には管理者権限が必要です。
-   起動するとインストール済み Logicool (Logitech) デバイスが一覧に表示されます。
+   起動時にまず SetPoint の対象バージョンを選択します。
+   するとインストール済み Logicool (Logitech) デバイスが一覧に表示されます。
    拡張したいデバイスを選択し、「適用」すると、拡張処理が実行されます。
    適用の際、「ユーザー設定ファイルを削除」が有効な場合、SetPoint のユーザー設定
    ファイルが削除されます。拡張以前の設定ファイルが残っていた場合、拡張が正常に
@@ -30,9 +34,14 @@
 (*)バックアップ
    適用時にバックアップが自動生成されます。初回のみバックアップします。
    以下にバックアップファイルを示します。
+   SetPoint 4.x
    ・%ProgramFiles%\Logicool\SetPoint\default.xml.bak
-   ・%ProgramData%Logitech\SetPoint\Devices\{デバイスの種類}\{デバイスID}\{デバイスID}.xml.bak
-   ・%AppData%Logitech\SetPoint\user.xml.bak
+   ・%ProgramData%\Logitech\SetPoint\Devices\{デバイスの種類}\{デバイスID}\{デバイスID}.xml.bak
+   ・%AppData%\Logitech\SetPoint\user.xml.bak
+   SetPoint 6.x
+   ・%ProgramFiles%\Logicool\SetPointP\default.xml.bak
+   ・%ProgramData%\Logishrd\SetPointP\Devices\{デバイスの種類}\{デバイスID}\{デバイスID}.xml.bak
+   ・%AppData%\Logitech\SetPoint\user.xml.bak
 
 (*)復元
    バックアップを復元します。バックアップの復元は「オプション」が考慮されます。
@@ -48,6 +57,8 @@
      あります。
 
 (*)更新履歴
+   2010/05/10 Version 0.1.0.6
+   ・SetPoint 6 への対応
    2009/11/24 Version 0.1.0.5
    ・重複している項目の選択がうまく反映されない問題を修正
    2009/09/17 Version 0.1.0.4

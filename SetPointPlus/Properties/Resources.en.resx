@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BeforeApply" xml:space="preserve">
-    <value>Do you want to apply?</value>
-  </data>
-  <data name="BeforeRestore" xml:space="preserve">
-    <value>Do you want to restore?</value>
-  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="ConfirmApply" xml:space="preserve">
+    <value>Do you want to apply?</value>
+  </data>
+  <data name="ConfirmRestore" xml:space="preserve">
+    <value>Do you want to restore?</value>
   </data>
   <data name="DevicesAreNotInstalled" xml:space="preserve">
     <value>Logitech (Logicool) devices are not installed.</value>

@@ -11,13 +11,32 @@ namespace SetPointPlus
 {
 	static class SetPointExtender
 	{
-		static readonly string SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "SetPoint Directory", null) as string;
-		static readonly string InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
-		static readonly string DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "Devices Folder", null) as string;
+		private static string SetPointDirectory;
+		private static string InstalledDevices;
+		private static string DevicesFolder;
+
+		static SetPointExtender()
+		{
+			InitializeForV4();
+		}
+
+		public static void InitializeForV6()
+		{
+			SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\EvtMgr6", "InstallLocation", null) as string;
+			InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
+			DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\EvtMgr6", "DevicesFilePath", null) as string;
+		}
+
+		public static void InitializeForV4()
+		{
+			SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "SetPoint Directory", null) as string;
+			InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
+			DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "Devices Folder", null) as string;
+		}
 
 		private static void BackupFile(string fileName)
 		{
-			// 元ファイルが無い場合、例外をだすべき？
+			// 元ファイルが無い場合、例外にすべき？
 			string backupName = fileName + ".bak";
 			// 元ファイルがあり、かつ、バックアップがまだ作成されていない
 			if (File.Exists(fileName) && !File.Exists(backupName))
@@ -62,34 +81,26 @@ namespace SetPointPlus
 
 		public static DeviceInfo[] GetInstalledDevices()
 		{
-			List<DeviceInfo> devices = new List<DeviceInfo>();
+			var devices = new List<DeviceInfo>();
 
 			if (!string.IsNullOrEmpty(InstalledDevices) && !string.IsNullOrEmpty(DevicesFolder))
 			{
-				string[] ids = InstalledDevices.Split(',');
+				string[] devIds = InstalledDevices.Split(',');
 				string[] deviceFiles = Directory.GetFiles(DevicesFolder, "*.xml", SearchOption.AllDirectories);
-				foreach (var id in ids)
+				foreach (var id in devIds)
 				{
 					foreach (var file in deviceFiles)
 					{
 						if (Path.GetFileNameWithoutExtension(file).Equals(id, StringComparison.OrdinalIgnoreCase))
 						{
-							XDocument document = XDocument.Load(file);
-							devices.Add(new DeviceInfo(GetDeviceName(document), id, file, document));
+                            devices.Add(new DeviceInfo(XDocument.Load(file), id, file));
 							break;
 						}
-						// continue
 					}
 				}
 			}
 
 			return devices.ToArray();
-		}
-
-		private static string GetDeviceName(XDocument document)
-		{
-			XElement device = document.Root.Element("Devices").Element("Device");
-			return device.Attribute("DisplayName").Value;
 		}
 
 		public static bool IsValidHandlerSet(XElement handlerSet)
@@ -123,31 +134,13 @@ namespace SetPointPlus
 
 			// 検証して HelpString が無い場合、また、重複していると思われるハンドラセットを除外
 		    var handlerSets =
-		        from h in document.Root.Element("HandlerSets").Elements()
-		        where IsValidHandlerSet(h)
-                group h by h.Attribute("HelpString").Value into helpStringGroup
-                select helpStringGroup.First().Attribute("Name").Value;
-                //select h.Attribute("Name").Value;
-
-			#region Linq を使わない方法(XmlDocument を使う)はこんな感じになると思う
-			//List<string> nameCache = new List<string>();
-			//StringBuilder sb = new StringBuilder();
-			//foreach (var item in document.Root.Element("HandlerSets").Elements())
-			//{
-			//    if (IsValidHandlerSet(item))
-			//    {
-			//        string helpString = item.Attribute("HelpString").Value;
-			//        if (!nameCache.Contains(helpString))
-			//        {
-			//            nameCache.Add(helpString);
-			//            sb.Append(item.Attribute("Name").Value).Append(",");
-			//        }
-			//    }
-			//}
-			#endregion
+		        from set in document.Root.Element("HandlerSets").Elements()
+		        where IsValidHandlerSet(set)
+		        group set by set.Attribute("HelpString").Value into helpStringGroup
+		        select helpStringGroup.First().Attribute("Name").Value;
 
 			// カンマ区切りにする
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 			foreach (var item in handlerSets)
 			{
 				sb.Append(item);
@@ -207,7 +200,7 @@ namespace SetPointPlus
 				param.SetAttributeValue("AppSpecificSettingHidden", 0);
 
 				// Silent="0" なら、左右クリックに他のコマンドを適用できる。
-				// だけど UAC ダイアログでマウスが効かない
+				// こうすると UAC ダイアログでマウスが効かなくなる
 				// 汎用ボタンに設定すれば回避できるがプログラム毎の設定ができない
 				XElement trigger = button.Element("Trigger");
 				XElement triggerParam = trigger.Element("PARAM");
@@ -235,6 +228,9 @@ namespace SetPointPlus
         /// </summary>
         public static void ApplyToHelpString()
         {
+			if (string.IsNullOrEmpty(SetPointDirectory))
+				return;
+
             var stringsXml = Path.Combine(SetPointDirectory, "Strings.xml");
 
             // 先に復元してもいいけど、バージョンアップで上書きされた場合、
@@ -243,7 +239,7 @@ namespace SetPointPlus
 
             BackupFile(stringsXml);
 
-            XDocument document = XDocument.Load(stringsXml);
+            var document = XDocument.Load(stringsXml);
             var elements = from e in document.Root.Element("StringSet").Elements("String")
                            where e.Attribute("ALIAS").Value.StartsWith("HELP_")
                            select e;
@@ -306,13 +302,13 @@ namespace SetPointPlus
 
 		public static void RestoreUserSettingFile()
 		{
-			string backupFile = Path.Combine(
-				Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Logitech\SetPoint\user.xml.bak");
+			string backupFile =
+				Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Logitech\SetPoint\user.xml.bak");
 
 			RestoreBackupFile(backupFile);
 		}
 
-        public static void RestoreHelpString()
+		public static void RestoreHelpString()
         {
             if (SetPointDirectory == null) return;
 

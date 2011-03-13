@@ -10,12 +10,19 @@ namespace SetPointPlus
 		public string FilePath { get; private set; }
 		public XDocument Document { get; private set; }
 
-		public DeviceInfo(string name, string id, string path, XDocument document)
+		public DeviceInfo(XDocument document, string id, string path)
 		{
-			this.Name = name;
+			//this.Name = name;
+			this.Name = GetDeviceName(document);
 			this.Id = id;
 			this.FilePath = path;
 			this.Document = document;
+		}
+
+		private static string GetDeviceName(XDocument document)
+		{
+			var device = document.Root.Element("Devices").Element("Device");
+			return device.Attribute("DisplayName").Value;
 		}
 
 		public override string ToString()

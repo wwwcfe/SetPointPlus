@@ -1,0 +1,8 @@
+﻿*.csproj ファイル内の
+<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+を削除
+VisualStudio のコード分析機能の設定が書き込まれている
+つまり、このまま公開すると Ultimate を使ってることがばれる
+
+
+Test 関連は VS2010 Pro でも使えるのでのこってても問題ないと思う
