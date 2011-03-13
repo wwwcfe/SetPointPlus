@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BeforeApply" xml:space="preserve">
-    <value>本当に適用してもよろしいですか?</value>
+    <value>Do you want to apply?</value>
   </data>
   <data name="BeforeRestore" xml:space="preserve">
-    <value>本当に復元してもよろしいですか?</value>
+    <value>Do you want to restore?</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
+    <value>Confirm</value>
   </data>
   <data name="DevicesAreNotInstalled" xml:space="preserve">
-    <value>Logitech (Logicool) デバイスがインストールされていません。</value>
+    <value>Logitech (Logicool) devices are not installed.</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>情報</value>
+    <value>Information</value>
   </data>
   <data name="Processed" xml:space="preserve">
-    <value>処理が完了しました。</value>
+    <value>Process has been completed.</value>
   </data>
 </root>

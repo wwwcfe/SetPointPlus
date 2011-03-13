@@ -1,36 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Diagnostics;
 using System.Xml.Linq;
 using Microsoft.Win32;
 
 namespace SetPointPlus
 {
-	// すること
-	// オーバーヘッドを無くしていく
-	// GetDeviceName 時点で一度読んだ XML を保持しておく
-
 	static class SetPointExtender
 	{
-		static readonly string SetPointDirectory;
-		static readonly string InstalledDevices;
-		static readonly string DevicesFolder;
-
-		static SetPointExtender()
-		{
-			SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "SetPoint Directory", null) as string;
-			InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
-			DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "Devices Folder", null) as string;
-		}
+		static readonly string SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "SetPoint Directory", null) as string;
+		static readonly string InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
+		static readonly string DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "Devices Folder", null) as string;
 
 		private static void BackupFile(string fileName)
 		{
 			// 元ファイルが無い場合、例外をだすべき？
 			string backupName = fileName + ".bak";
-			if (File.Exists(fileName) && !File.Exists(backupName)) // fileName があり、かつ、バックアップがまだ作成されていない
+			// 元ファイルがあり、かつ、バックアップがまだ作成されていない
+			if (File.Exists(fileName) && !File.Exists(backupName))
 			{
 				File.Copy(fileName, backupName);
 			}
@@ -45,28 +35,25 @@ namespace SetPointPlus
 				BackupFile(userFile);
 
 			if (File.Exists(userFile))
-			{
 				File.Delete(userFile);
-			}
 		}
 
 		public static void RestartSetPoint()
 		{
-			// TODO: LINQ 使わなくてもいいよね・・・
-			var processes =
-				from p in Process.GetProcesses()
-				where p.ProcessName.Equals("SetPoint", StringComparison.InvariantCultureIgnoreCase) || p.ProcessName.Equals("SetPoint32", StringComparison.InvariantCultureIgnoreCase)
-				select p;
-
 			string setPointFileName = null;
-			foreach (var proc in processes)
+			foreach (var proc in Process.GetProcesses())
 			{
-				if (proc.MainModule.FileName.EndsWith("SetPoint.exe", StringComparison.InvariantCultureIgnoreCase))
+				if (proc.ProcessName.Equals("SetPoint", StringComparison.OrdinalIgnoreCase) ||
+					proc.ProcessName.Equals("SetPoint32", StringComparison.OrdinalIgnoreCase))
 				{
-					// SetPoint.exe のパスを記憶しておく (SetPoint32.exe は SetPoint.exe を起動すれば同時に起動する)
-					setPointFileName = proc.MainModule.FileName;
+					if (proc.MainModule.FileName.EndsWith("SetPoint.exe", StringComparison.OrdinalIgnoreCase))
+					{
+						// SetPoint.exe のパスを記憶しておく
+						// (SetPoint32.exe は SetPoint.exe を起動すれば同時に起動する)
+						setPointFileName = proc.MainModule.FileName;
+					}
+					proc.Kill();
 				}
-				proc.Kill();
 			}
 
 			if (!string.IsNullOrEmpty(setPointFileName))
@@ -85,7 +72,7 @@ namespace SetPointPlus
 				{
 					foreach (var file in deviceFiles)
 					{
-						if (Path.GetFileNameWithoutExtension(file).Equals(id, StringComparison.InvariantCultureIgnoreCase))
+						if (Path.GetFileNameWithoutExtension(file).Equals(id, StringComparison.OrdinalIgnoreCase))
 						{
 							XDocument document = XDocument.Load(file);
 							devices.Add(new DeviceInfo(GetDeviceName(document), id, file, document));
@@ -105,18 +92,28 @@ namespace SetPointPlus
 			return device.Attribute("DisplayName").Value;
 		}
 
-		public static bool IsValidHandlerSet(string name)
+		public static bool IsValidHandlerSet(XElement handlerSet)
 		{
+			string name = handlerSet.Attribute("Name").Value;
 			// 除外するコマンド
-			if (name.StartsWith("AppOverride_") || name == "ButtonUsage" || name == "FirstUsageSet")
+			if (string.IsNullOrEmpty(name) ||
+				name.StartsWith("AppOverride_", StringComparison.OrdinalIgnoreCase) ||
+				name.Equals("ButtonUsage", StringComparison.OrdinalIgnoreCase) ||
+				name.Equals("FirstUsageSet", StringComparison.OrdinalIgnoreCase))
 				return false;
+
+			XAttribute helpString = handlerSet.Attribute("HelpString");
+			if (helpString == null || string.IsNullOrEmpty(helpString.Value))
+				return false;
+
 			return true;
 		}
 
 		public static void ApplyToDefaultXml()
 		{
 			// SetPointDirectory が null なら SetPoint はインストールされていない
-			//if (string.IsNullOrEmpty(SetPointDirectory)) return;
+			// 処理しなかったことを通知しなくてもいいか？
+			if (string.IsNullOrEmpty(SetPointDirectory)) return;
 
 			string defaultXml = Path.Combine(SetPointDirectory, "default.xml");
 			BackupFile(defaultXml);
@@ -127,9 +124,26 @@ namespace SetPointPlus
 			// 検証して HelpString が無い場合、また、重複していると思われるハンドラセットを除外
 			var handlerSets =
 				from h in document.Root.Element("HandlerSets").Elements()
-				where IsValidHandlerSet(h.Attribute("Name").Value) && h.Attribute("HelpString") != null && !string.IsNullOrEmpty(h.Attribute("HelpString").Value)
+				where IsValidHandlerSet(h)
 				group h by h.Attribute("HelpString").Value into helpStringGroup
-				select helpStringGroup.ElementAt(0).Attribute("Name").Value;
+				select helpStringGroup.First().Attribute("Name").Value;
+
+			#region Linq を使わない方法(XmlDocument を使う)はこんな感じになると思う
+			//List<string> nameCache = new List<string>();
+			//StringBuilder sb = new StringBuilder();
+			//foreach (var item in document.Root.Element("HandlerSets").Elements())
+			//{
+			//    if (IsValidHandlerSet(item))
+			//    {
+			//        string helpString = item.Attribute("HelpString").Value;
+			//        if (!nameCache.Contains(helpString))
+			//        {
+			//            nameCache.Add(helpString);
+			//            sb.Append(item.Attribute("Name").Value).Append(",");
+			//        }
+			//    }
+			//}
+			#endregion
 
 			// カンマ区切りにする
 			StringBuilder sb = new StringBuilder();
@@ -139,19 +153,26 @@ namespace SetPointPlus
 				sb.Append(",");
 			}
 
-			XElement setPointPlusElement =
-				new XElement("HandlerSetGroup", new XAttribute("Name", "SetPointPlus"), new XAttribute("HandlerSetNames", sb.ToString()));
-
+			XElement setPointPlusElement = null;
 			var handlerSetGroups = document.Root.Element("HandlerSetGroups");
-
-			// 既に改変してあっても作成し直している。
-			// 先に改変チェックして処理しないようにした方がいいか
-			XElement firstElement = handlerSetGroups.Element("HandlerSetGroup");
-			if (firstElement.Attribute("Name").Value == "SetPointPlus")
+			foreach (var group in handlerSetGroups.Elements("HandlerSetGroup"))
 			{
-				firstElement.Remove();
+				// 以前追加されてるならそれを使う
+				if (group.Attribute("Name").Value.Equals("SetPointPlus", StringComparison.OrdinalIgnoreCase))
+				{
+					setPointPlusElement = group;
+					break;
+				}
 			}
-			handlerSetGroups.AddFirst(setPointPlusElement);
+
+			// 以前追加されてなければ作って追加
+			if (setPointPlusElement == null)
+			{
+				setPointPlusElement = new XElement("HandlerSetGroup", new XAttribute("Name", "SetPointPlus"));
+				handlerSetGroups.AddFirst(setPointPlusElement);
+			}
+			setPointPlusElement.SetAttributeValue("HandlerSetNames", sb.ToString());
+
 			//document.Save(defaultXml, SaveOptions.DisableFormatting);
 			document.Save(defaultXml);
 		}
@@ -168,7 +189,7 @@ namespace SetPointPlus
 			XElement device = document.Root.Element("Devices").Element("Device");
 
 			// マウスなら左右入れ替え OFF
-			if (device.Attribute("Class").Value == "PointingDevice")
+			if (device.Attribute("Class").Value.Equals("PointingDevice", StringComparison.OrdinalIgnoreCase))
 				device.Element("PARAM").SetAttributeValue("Swapable", 0);
 
 			// ボタンにオプションを適用
@@ -186,14 +207,14 @@ namespace SetPointPlus
 
 				// Silent="0" なら、左右クリックに他のコマンドを適用できる。
 				// だけど UAC ダイアログでマウスが効かない
-				// 汎用ボタンに設定すれば回避できるがプログラム毎の設定ができない等問題がある。
+				// 汎用ボタンに設定すれば回避できるがプログラム毎の設定ができない
 				XElement trigger = button.Element("Trigger");
 				XElement triggerParam = trigger.Element("PARAM");
 				if (triggerParam != null)
 				{
 					XAttribute silent = triggerParam.Attribute("Silent");
 					if (silent != null)
-						silent.Remove(); // あったら削除
+						silent.Remove(); // Silent があったら削除
 				}
 
 				// SetPointPlus を各ボタンに適用
@@ -209,9 +230,10 @@ namespace SetPointPlus
 
 		private static void RestoreBackupFile(string backupFileName)
 		{
-			// 拡張子 .bak に決めうち
+			// original.xml.bak に決めうち
 			string originalFileName = backupFileName.Substring(0, backupFileName.Length - 4);
-			//string originalFileName = Path.Combine(Path.GetDirectoryName(backupFileName), Path.GetFileNameWithoutExtension(backupFileName));
+			//string originalFileName =
+			//    Path.Combine(Path.GetDirectoryName(backupFileName), Path.GetFileNameWithoutExtension(backupFileName));
 			if (File.Exists(backupFileName))
 			{
 				if (File.Exists(originalFileName)) // 先に元ファイルを削除
@@ -222,12 +244,18 @@ namespace SetPointPlus
 
 		public static void RestoreDefaultXml()
 		{
+			// インストールされていない
+			if (SetPointDirectory == null) return;
+
 			string backupFile = Path.Combine(SetPointDirectory, "default.xml.bak");
 			RestoreBackupFile(backupFile);
 		}
 
 		public static void RestoreDeviceXml()
 		{
+			// インストールされてない
+			if (DevicesFolder == null) return;
+
 			string[] backupFiles = Directory.GetFiles(DevicesFolder, "*.bak", SearchOption.AllDirectories);
 			foreach (var file in backupFiles)
 			{

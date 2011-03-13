@@ -1,28 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml.Linq;
-
-using System.IO;
-using System.Diagnostics;
-using Microsoft.Win32;
 
 namespace SetPointPlus
 {
-	// Icon について
-	// Clockmaker Icon Generator で 16x16 ~ 128x128 の PNG を作成
-	// @icon 変換で上記のアイコンをまとめる
-	// IconFX で「アイコンへイメージを一括変換」する。16x16 ~ 256x256 までのアイコンが作成される
 	public partial class MainForm : Form
 	{
 		public MainForm()
 		{
+#if DEBUG
+			System.Threading.Thread.CurrentThread.CurrentUICulture =
+				new System.Globalization.CultureInfo("en");
+#endif
 			InitializeComponent();
+		}
+
+		private bool Confirm(string message)
+		{
+			return MessageBox.Show(message, Properties.Resources.Confirm,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+		}
+
+		private void ShowInformation(string message)
+		{
+			MessageBox.Show(message, Properties.Resources.Information,
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
@@ -30,8 +31,10 @@ namespace SetPointPlus
 			var devices = SetPointExtender.GetInstalledDevices();
 			if (devices.Length == 0)
 			{
-				MessageBox.Show("Logitech (Logicool) デバイスがインストールされていません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				ShowInformation(Properties.Resources.DevicesAreNotInstalled);
+#if !DEBUG
 				this.Close();
+#endif
 				return;
 			}
 
@@ -43,8 +46,7 @@ namespace SetPointPlus
 
 		private void ApplyCore()
 		{
-			if (MessageBox.Show("本当に適用してもよろしいですか?", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-				return;
+			if (!Confirm(Properties.Resources.BeforeApply)) return;
 
 			SetPointExtender.ApplyToDefaultXml();
 
@@ -60,7 +62,7 @@ namespace SetPointPlus
 			if (restartCheckBox.Checked)
 				SetPointExtender.RestartSetPoint();
 
-			MessageBox.Show("処理が完了しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ShowInformation(Properties.Resources.Processed);
 		}
 
 		private void applyButton_Click(object sender, EventArgs e)
@@ -78,19 +80,21 @@ namespace SetPointPlus
 
 		private void RestoreCore()
 		{
-			if (MessageBox.Show("本当に復元してもよろしいですか?", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-				return;
+			if (!Confirm(Properties.Resources.BeforeRestore)) return;
+
 			SetPointExtender.RestoreDefaultXml();
 			SetPointExtender.RestoreDeviceXml();
-			SetPointExtender.RestoreUserSettingFile(); // ユーザー設定ファイルを復元 (.bak ファイルを消す)
+			// ユーザー設定ファイルを復元 (.bak ファイルを消す)
+			SetPointExtender.RestoreUserSettingFile();
 
+			//ユーザーが選択していたら元のファイルも消す
 			if (deleteCheckBox.Checked)
-				SetPointExtender.DeleteUserSettingFile(false); //ユーザーが選択していたら下のファイルも消す
+				SetPointExtender.DeleteUserSettingFile(false);
 
 			if (restartCheckBox.Checked)
 				SetPointExtender.RestartSetPoint();
 
-			MessageBox.Show("処理が完了しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ShowInformation(Properties.Resources.Processed);
 		}
 
 		private void restoreButton_Click(object sender, EventArgs e)
