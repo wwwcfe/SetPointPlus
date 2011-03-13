@@ -113,5 +113,14 @@ namespace SetPointPlus.Properties {
                 return ResourceManager.GetString("Processed", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   SetPoint を検出できません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SetPointIsNotDetected {
+            get {
+                return ResourceManager.GetString("SetPointIsNotDetected", resourceCulture);
+            }
+        }
     }
 }

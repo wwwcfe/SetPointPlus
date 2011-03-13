@@ -135,4 +135,7 @@
   <data name="Processed" xml:space="preserve">
     <value>処理が完了しました。</value>
   </data>
+  <data name="SetPointIsNotDetected" xml:space="preserve">
+    <value>SetPoint を検出できません。</value>
+  </data>
 </root>

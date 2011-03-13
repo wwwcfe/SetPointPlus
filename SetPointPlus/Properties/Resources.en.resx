@@ -135,4 +135,7 @@
   <data name="Processed" xml:space="preserve">
     <value>Process has been completed.</value>
   </data>
+  <data name="SetPointIsNotDetected" xml:space="preserve">
+    <value>SetPoint is not detected.</value>
+  </data>
 </root>

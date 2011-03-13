@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace SetPointPlus
 {
+	enum SetPointVersion
+	{
+		V6,
+		V4,
+		Unknown
+	}
+
 	static class SetPointExtender
 	{
 		private static string SetPointDirectory;
@@ -18,7 +25,7 @@ namespace SetPointPlus
 
 		static SetPointExtender()
 		{
-			InitializeForV4();
+			InitializeForV6();
 		}
 
 		public static void InitializeForV6()
@@ -33,6 +40,19 @@ namespace SetPointPlus
 			SetPointDirectory = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "SetPoint Directory", null) as string;
 			InstalledDevices = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Logitech\Info", "SP5Devices", null) as string;
 			DevicesFolder = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\SetPoint\CurrentVersion\Setup", "Devices Folder", null) as string;
+		}
+
+		public static SetPointVersion GetInstalledSetPointVersion()
+		{
+			// InitializeForV6()
+			if (!string.IsNullOrEmpty(SetPointDirectory))
+				return SetPointVersion.V6;
+
+			InitializeForV4();
+			if (!string.IsNullOrEmpty(SetPointDirectory))
+				return SetPointVersion.V4;
+
+			return SetPointVersion.Unknown;
 		}
 
 		private static void BackupFile(string fileName)
@@ -149,12 +169,70 @@ namespace SetPointPlus
 			// default.xml を読み込む
 			XDocument document = XDocument.Load(defaultXml);
 
+			var handlerSetElements = document.Root.Element("HandlerSets").Elements();
+
+			#region Add multiple keystroke action
+			XElement doubleKeystroke = null;
+			XElement tripleKeystroke = null;
+			foreach (var el in handlerSetElements)
+			{
+				var value = el.Attribute("Name").Value;
+				if (value.Equals("DoubleKeystroke"))
+				{
+					doubleKeystroke = el;
+				}
+				else if (value.Equals("TripleKeystroke"))
+				{
+					tripleKeystroke = el;
+				}
+			}
+
+			if (doubleKeystroke == null)
+			{
+				doubleKeystroke = new XElement("HandlerSet");
+				doubleKeystroke.SetAttributeValue("Name", "DoubleKeystroke");
+				doubleKeystroke.SetAttributeValue("HelpString", "DoubleKeystroke");
+				var keystrokeAssignment = new XElement("Handler");
+				keystrokeAssignment.SetAttributeValue("Class", "KeystrokeAssignment");
+				var param = new XElement("Param");
+				param.SetAttributeValue("VirtualKey", 0);
+				param.SetAttributeValue("LParam", 0);
+				param.SetAttributeValue("Modifier", 0);
+				param.SetAttributeValue("DisplayName", 0);
+				keystrokeAssignment.Add(param);
+				doubleKeystroke.Add(keystrokeAssignment);
+				doubleKeystroke.Add(keystrokeAssignment);
+
+				document.Root.Element("HandlerSets").Add(doubleKeystroke);
+			}
+
+			if (tripleKeystroke == null)
+			{
+				tripleKeystroke = new XElement("HandlerSet");
+				tripleKeystroke.SetAttributeValue("Name", "TripleKeystroke");
+				tripleKeystroke.SetAttributeValue("HelpString", "TripleKeystroke");
+				var keystrokeAssignment = new XElement("Handler");
+				keystrokeAssignment.SetAttributeValue("Class", "KeystrokeAssignment");
+				var param = new XElement("Param");
+				param.SetAttributeValue("VirtualKey", 0);
+				param.SetAttributeValue("LParam", 0);
+				param.SetAttributeValue("Modifier", 0);
+				param.SetAttributeValue("DisplayName", 0);
+				keystrokeAssignment.Add(param);
+				tripleKeystroke.Add(keystrokeAssignment);
+				tripleKeystroke.Add(keystrokeAssignment);
+				tripleKeystroke.Add(keystrokeAssignment);
+
+				document.Root.Element("HandlerSets").Add(tripleKeystroke);
+			}
+			#endregion
+
 			// 検証して HelpString が無い場合、また、重複していると思われるハンドラセットを除外
-		    var handlerSets =
-		        from set in document.Root.Element("HandlerSets").Elements()
-		        where IsValidHandlerSet(set)
-		        group set by set.Attribute("HelpString").Value into helpStringGroup
-		        select helpStringGroup.First().Attribute("Name").Value;
+			var handlerSets =
+				from set in document.Root.Element("HandlerSets").Elements()
+				where IsValidHandlerSet(set)
+				group set by set.Attribute("HelpString").Value into helpStringGroup
+				select helpStringGroup.First().Attribute("Name").Value;
 
 			// カンマ区切りにする
 			var sb = new StringBuilder();
@@ -244,48 +322,49 @@ namespace SetPointPlus
 			document.Save(info.FilePath);
 		}
 
-        /// <summary>
-        /// Strings.xml に SetPointPlus の設定を書き込みます。
-        /// 設定のテキストが重複した場合、重複したテキストに番号を割り当てます。
-        /// </summary>
-        public static void ApplyToHelpString()
-        {
+		/// <summary>
+		/// Strings.xml に SetPointPlus の設定を書き込みます。
+		/// 設定のテキストが重複した場合、重複したテキストに番号を割り当てます。
+		/// </summary>
+		public static void ApplyToHelpString()
+		{
 			if (string.IsNullOrEmpty(SetPointDirectory))
 				return;
 
-            var stringsXml = Path.Combine(SetPointDirectory, "Strings.xml");
+			var stringsXml = Path.Combine(SetPointDirectory, "Strings.xml");
 
-            // 先に復元してもいいけど、バージョンアップで上書きされた場合、
-            // 古い Strings.xml を復元してしまう可能性があるのでやめる。
-            //RestoreHelpString();
+			// 先に復元してもいいけど、バージョンアップで上書きされた場合、
+			// 古い Strings.xml を復元してしまう可能性があるのでやめる。
+			//RestoreHelpString();
 
-            BackupFile(stringsXml);
+			BackupFile(stringsXml);
 
-            var document = XDocument.Load(stringsXml);
-            var elements = from e in document.Root.Element("StringSet").Elements("String")
-                           where e.Attribute("ALIAS").Value.StartsWith("HELP_")
-                           select e;
+			var document = XDocument.Load(stringsXml);
+			var elements = from e in document.Root.Element("StringSet").Elements("String")
+						   where e.Attribute("ALIAS").Value.StartsWith("HELP_")
+						   select e;
 
-            // 設定のテキスト, 番号
-            var dict = new Dictionary<string, int>();
-            foreach (var element in elements)
-            {
-                if (dict.ContainsKey(element.Value))
-                {
-                    // かぶった場合
-                    dict[element.Value] = dict[element.Value] + 1;
-                    element.Value = element.Value + string.Format(" ({0})", dict[element.Value]);
-                }
-                else
-                {
-                    // 重複しなかった
-                    // Key は 要素 (String 要素の値)
-                    dict.Add(element.Value, 1);
-                }
-            }
+			// 重複検出用の辞書
+			// 設定のテキスト, 番号
+			var dict = new Dictionary<string, int>();
+			foreach (var element in elements)
+			{
+				if (dict.ContainsKey(element.Value))
+				{
+					// かぶった場合
+					dict[element.Value] = dict[element.Value] + 1;
+					element.Value = element.Value + string.Format(" ({0})", dict[element.Value]);
+				}
+				else
+				{
+					// 重複しなかった
+					// Key は 要素 (String 要素の値)
+					dict.Add(element.Value, 1);
+				}
+			}
 
-            document.Save(stringsXml);
-        }
+			document.Save(stringsXml);
+		}
 
 		private static void RestoreBackupFile(string backupFileName)
 		{
@@ -331,11 +410,11 @@ namespace SetPointPlus
 		}
 
 		public static void RestoreHelpString()
-        {
-            if (SetPointDirectory == null) return;
+		{
+			if (SetPointDirectory == null) return;
 
-            string backupFile = Path.Combine(SetPointDirectory, "Strings.xml.bak");
-            RestoreBackupFile(backupFile);
-        }
+			string backupFile = Path.Combine(SetPointDirectory, "Strings.xml.bak");
+			RestoreBackupFile(backupFile);
+		}
 	}
 }

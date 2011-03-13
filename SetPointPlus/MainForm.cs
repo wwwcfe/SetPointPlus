@@ -18,7 +18,22 @@ namespace SetPointPlus
 			comboBox.Items.Add(Version4x);
 			comboBox.Items.Add(Version6x);
 
-			SetPointExtender.InitializeForV6();
+			switch (SetPointExtender.GetInstalledSetPointVersion())
+			{
+				case SetPointVersion.V6:
+					comboBox.SelectedItem = Version6x;
+					break;
+				case SetPointVersion.V4:
+					comboBox.SelectedItem = Version4x;
+					break;
+				default:
+					// SetPoint 自体がないため、復元も適用もできない
+					applyButton.Enabled = false;
+					restoreButton.Enabled = false;
+					deviceCheckedListBox.Enabled = false;
+					ShowInformation(Properties.Resources.SetPointIsNotDetected);
+					break;
+			}
 		}
 
 		private static bool Confirm(string message)
@@ -83,32 +98,24 @@ namespace SetPointPlus
 			var devices = SetPointExtender.GetInstalledDevices();
 			if (devices.Length == 0)
 			{
+				// SetPoint がインストールされてないかもしれないので適用はできない
+				// ただ、デバイスがインストールされていないだけかもしれないので復元だけはできるようにする
+				applyButton.Enabled = false;
+				restoreButton.Enabled = true;
+				deviceCheckedListBox.Enabled = false;
 				ShowInformation(Properties.Resources.DevicesAreNotInstalled);
 				return;
 			}
+
+			// デバイスが見つかっ場合
+			applyButton.Enabled = true;
+			restoreButton.Enabled = true;
+			deviceCheckedListBox.Enabled = true;
 
 			foreach (var dev in devices)
 			{
 				this.deviceCheckedListBox.Items.Add(dev);
 			}
-		}
-
-		private void MainForm_Load(object sender, EventArgs e)
-		{
-//            var devices = SetPointExtender.GetInstalledDevices();
-//            if (devices.Length == 0)
-//            {
-//                ShowInformation(Properties.Resources.DevicesAreNotInstalled);
-//#if !DEBUG
-//                this.Close();
-//#endif
-//                return;
-//            }
-
-//            foreach (var dev in devices)
-//            {
-//                this.deviceCheckedListBox.Items.Add(dev);
-//            }
 		}
 
 		private void applyButton_Click(object sender, EventArgs e)
@@ -140,6 +147,7 @@ namespace SetPointPlus
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			string selectedItem = comboBox.SelectedItem as string;
+
 			if (selectedItem.Equals(Version6x))
 				SetPointExtender.InitializeForV6();
 			else

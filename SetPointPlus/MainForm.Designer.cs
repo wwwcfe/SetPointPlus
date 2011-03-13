@@ -99,9 +99,9 @@
 			// 
 			// comboBox
 			// 
-			resources.ApplyResources(this.comboBox, "comboBox");
 			this.comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox.FormattingEnabled = true;
+			resources.ApplyResources(this.comboBox, "comboBox");
 			this.comboBox.Name = "comboBox";
 			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
 			// 
@@ -119,7 +119,6 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MainForm";
-			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.optionGroupBox.ResumeLayout(false);
 			this.optionGroupBox.PerformLayout();
 			this.ResumeLayout(false);

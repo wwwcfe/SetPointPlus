@@ -1,5 +1,7 @@
-﻿SetPointPlus 0.1.0.8
-公開日 2010/08/25
+﻿SetPointPlus 0.1.0.9
+公開日 2010/10/05
+Web: http://d.hatena.ne.jp/wwwcfe/20090901/SetPointPlus
+Mail: wwwcfe@live.com
 
 (*)注意
    このソフトウェアを使用はすべて自己責任でお願いします。
@@ -35,13 +37,15 @@
    適用時にバックアップが自動生成されます。初回のみバックアップします。
    以下にバックアップファイルを示します。
    SetPoint 4.x
-   ・%ProgramFiles%\Logicool\SetPoint\default.xml.bak
-   ・%ProgramData%\Logitech\SetPoint\Devices\{デバイスの種類}\{デバイスID}\{デバイスID}.xml.bak
-   ・%AppData%\Logitech\SetPoint\user.xml.bak
+   ・"%ProgramFiles%\Logicool\SetPoint\default.xml.bak"
+   ・"%ProgramData%\Logitech\SetPoint\Devices\{デバイスの種類}\{デバイスID}\
+     {デバイスID}.xml.bak"
+   ・"%AppData%\Logitech\SetPoint\user.xml.bak"
    SetPoint 6.x
-   ・%ProgramFiles%\Logicool\SetPointP\default.xml.bak
-   ・%ProgramData%\Logishrd\SetPointP\Devices\{デバイスの種類}\{デバイスID}\{デバイスID}.xml.bak
-   ・%AppData%\Logitech\SetPoint\user.xml.bak
+   ・"%ProgramFiles%\Logicool\SetPointP\default.xml.bak"
+   ・"%ProgramData%\Logishrd\SetPointP\Devices\{デバイスの種類}\{デバイスID}\
+     {デバイスID}.xml.bak"
+   ・"%AppData%\Logitech\SetPoint\user.xml.bak"
 
 (*)復元
    バックアップを復元します。バックアップの復元は「オプション」が考慮されます。
@@ -49,15 +53,27 @@
 
 (*)国際化について
    既定の言語は日本語ですが、ローカライズに対応しています。
-   英語環境で自動的に英語になります。英語を使用しない場合、en フォルダを削除してかまいません。
+   英語環境で自動的に英語になります。英語を使用しない場合、en フォルダを削除
+   してかまいません。
 
 (*)既知の問題
    ・UAC ダイアログでマウスの左右ボタンが効きません。
      これは、汎用ボタンを割り当てると動作します。他にキーボードで操作する方法も
      あります。
+   ・SetPoint を閉じるボタン [X] で閉じるとフリーズすることがあります。
+     もしこの問題が起こる場合は、閉じるボタンは使わず、キャンセル ボタンを
+     利用するか、マウスの左クリックに「汎用ボタン」を割り当ててください。
+   ・Kaspersky と競合することがあります。
+     SetPoint.exe, SetPoint32.exe. SetPointPlus.exe を除外リストに追加して
+     ください。
+   ・「TripleKeystroke」を割り当てた場合、3 番目のキーストロークを設定できません。
 
 (*)更新履歴
-   2010/08/25 Version 0.1.0.7
+   2010/10/05 Version 0.1.0.9
+   ・連続してキーストロークを送信する「TripleKeystroke」と「DoubleKeystroke」
+     を追加
+   ・起動時にインストールされている SetPoint のバージョンを自動検出
+   2010/08/25 Version 0.1.0.8
    ・一部の環境でデバイス一覧を取得できなかった問題を修正
    2010/05/27 Version 0.1.0.7
    ・一部のマウスでアプリケーション毎の設定が出来なかった問題を修正
