@@ -128,10 +128,10 @@
     <value>&amp;Installed Devices:</value>
   </data>
   <data name="deleteCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 16</value>
+    <value>142, 16</value>
   </data>
   <data name="deleteCheckBox.Text" xml:space="preserve">
-    <value>&amp;Delete User Setting File</value>
+    <value>&amp;Delete user setting file</value>
   </data>
   <data name="restartCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 16</value>

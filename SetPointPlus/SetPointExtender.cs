@@ -182,9 +182,14 @@ namespace SetPointPlus
 
 			XElement device = document.Root.Element("Devices").Element("Device");
 
-			// マウスなら左右入れ替え OFF
+			// マウスの場合の設定
 			if (device.Attribute("Class").Value.Equals("PointingDevice", StringComparison.OrdinalIgnoreCase))
+			{
+				// マウスなら左右入れ替え OFF
 				device.Element("PARAM").SetAttributeValue("Swapable", 0);
+				// アプリケーション毎の設定を表示させる
+				device.SetAttributeValue("AppTier", 2);
+			}
 
 			// ボタンにオプションを適用
 			var buttons = device.Element("Buttons").Elements("Button");

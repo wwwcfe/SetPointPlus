@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetPointPlus", "SetPointPlus\SetPointPlus.csproj", "{D9887908-0B8F-41A9-9E96-FE9D6033D514}"
 EndProject
 Global
