@@ -5,6 +5,9 @@ namespace SetPointPlus
 {
 	public partial class MainForm : Form
 	{
+		// 実装とインターフェースを分ける
+		// デザインパターン Proxy?
+
 		private readonly string Version6x = "SetPoint 6.x";
 		private readonly string Version4x = "SetPoint 4.x";
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace SetPointPlus
 {
@@ -93,7 +94,23 @@ namespace SetPointPlus
 					{
 						if (Path.GetFileNameWithoutExtension(file).Equals(id, StringComparison.OrdinalIgnoreCase))
 						{
-                            devices.Add(new DeviceInfo(XDocument.Load(file), id, file));
+							DeviceInfo info = null;
+							try
+							{
+								info = new DeviceInfo(XDocument.Load(file), id, file);
+							}
+							catch (NullReferenceException ex)
+							{
+								Debug.WriteLine(ex.ToString());
+								break;
+							}
+
+							if (info != null)
+							{
+								devices.Add(info);
+							}
+
+							//devices.Add(new DeviceInfo(XDocument.Load(file), id, file));
 							break;
 						}
 					}

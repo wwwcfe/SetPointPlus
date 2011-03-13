@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace SetPointPlus
 {
@@ -19,6 +20,11 @@ namespace SetPointPlus
 				var lang = args[0].Substring(6);
 				Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
 			}
+
+#if DEBUG
+			Debug.Listeners.Add(new TextWriterTraceListener("debug.log"));
+			Debug.AutoFlush = true;
+#endif
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
