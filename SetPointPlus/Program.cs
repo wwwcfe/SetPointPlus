@@ -217,7 +217,6 @@ namespace SetPointPlus
 			foreach (var id in ids)
 			{
 				var files = Directory.GetFiles(info[1], id + ".xml", SearchOption.AllDirectories);
-				Debug.Assert(files.Length == 1);
 				foreach (var f in files)
 				{
 					RestoreFile(f);
@@ -266,7 +265,6 @@ namespace SetPointPlus
 				if (targets.Count > 0 && !targets.Contains(id.ToLower()))
 					continue;
 				var files = Directory.GetFiles(info[1], id + ".xml", SearchOption.AllDirectories);
-				Debug.Assert(files.Length == 1);
 				foreach (var f in files)
 				{
 					BackupFile(f);
